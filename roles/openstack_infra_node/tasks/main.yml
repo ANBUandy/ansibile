@@ -1,0 +1,13 @@
+---
+
+- name: Install Deployment Packages
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present
+  with_items:
+    - aptitude
+    - build-essential
+    - git
+    - ntp
+    - openssh-server
+    - python-dev
+    - sudo    

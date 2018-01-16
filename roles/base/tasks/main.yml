@@ -1,0 +1,15 @@
+---
+
+- name: Install tmux
+  package:
+    name: tmux
+    state: latest
+
+- name: Install mlocate
+  package:
+    name: mlocate
+    state: latest
+
+- name: Set Timezone
+  timezone:
+    name: Australia/Sydney

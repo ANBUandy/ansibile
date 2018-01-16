@@ -1,0 +1,7 @@
+---
+
+- hosts: openstack_infra_node
+  become: true
+
+  roles:
+    - openstack_infra_node 
