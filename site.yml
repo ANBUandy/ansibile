@@ -7,3 +7,4 @@
     - base
 
 - include: openstack_infra.yml
+- include: openstack_node.yml

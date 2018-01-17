@@ -11,3 +11,9 @@
     - openssh-server
     - python-dev
     - sudo    
+
+- name: Install Openstack Ansible
+  git:
+    repo: 'https://git.openstack.org/openstack/openstack-ansible'
+    dest: /opt/openstack-ansible
+    version: 16.0.5

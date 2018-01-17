@@ -1,0 +1,37 @@
+---
+
+- name: Install Prereq Packages
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+    - bridge-utils
+    - debootstrap
+    - ifenslave
+    - ifenslave-2.6
+    - lsof 
+    - lvm2
+    - ntp
+    - ntpdate
+    - openssh-server
+    - sudo
+    - tcpdump
+    - vlan
+
+- name: Test for line
+  shell: 'grep "bonding" /etc/modules || :'
+  register: test_grep
+
+- name: Append Config to /etc/modules
+  when: test_grep.stdout == ""
+  lineinfile:
+    path: /etc/modules
+    insertafter: 'at boot time'
+    line: |
+      bonding
+      8021q
+
+- name: Install Network Config
+  template: 
+    src: interfaces
+    dest: /etc/network/interfaces
+    mode: 644

@@ -1,0 +1,29 @@
+auto {{ nic_name }}
+iface {{ nic_name }} inet manual 
+
+auto {{ nic_name }}.10
+iface {{ nic_name }}.10 inet manual
+  vlan-raw-device {{ nic_name }}
+
+auto {{ nic_name }}.20
+iface {{ nic_name }}.20 inet manual
+  vlan-raw-device {{ nic_name }}
+
+auto {{ nic_name }}.30
+iface {{ nic_name }}.30 inet manual
+  vlan-raw-device {{ nic_name }}
+
+auto br-mgmt 
+iface br-mgmt inet static
+  bridge_stp off
+  bridge_waitport 0
+  bridge_fd 0
+  bridge_ports {{ nic_name }}
+  address {{ ip_adr }}
+  netmask {{ netmask }}
+  gateway {{ gateway }}
+  dns-nameservers {{ dns_srv }}
+
+{{ br_mgmt_config }}
+
+{{ remaining_config }}

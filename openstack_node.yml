@@ -1,0 +1,7 @@
+---
+
+- hosts: openstack_servers
+  become: true
+
+  roles:
+    - openstack_node
